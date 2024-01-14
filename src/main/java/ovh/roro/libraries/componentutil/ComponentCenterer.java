@@ -5,7 +5,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentContents;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.contents.LiteralContents;
+import net.minecraft.network.chat.contents.PlainTextContents;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -21,9 +21,9 @@ class ComponentCenterer {
     private void visit(@NotNull Component component, ComponentTextConsumer consumer) {
         ComponentContents contents = component.getContents();
 
-        if (contents == ComponentContents.EMPTY) {
+        if (contents == PlainTextContents.EMPTY) {
             consumer.accept(Style.EMPTY, null);
-        } else if (contents instanceof LiteralContents literalContents) {
+        } else if (contents instanceof PlainTextContents literalContents) {
             String text = literalContents.text();
 
             if (text.isEmpty()) {
@@ -82,9 +82,9 @@ class ComponentCenterer {
             return false;
         }
 
-        if (component.getContents() != ComponentContents.EMPTY) {
+        if (component.getContents() != PlainTextContents.EMPTY) {
             return !countNewlineAsEmpty ||
-                    !(component.getContents() instanceof LiteralContents literalContents) ||
+                    !(component.getContents() instanceof PlainTextContents literalContents) ||
                     !"\n".equals(literalContents.text());
         }
 
