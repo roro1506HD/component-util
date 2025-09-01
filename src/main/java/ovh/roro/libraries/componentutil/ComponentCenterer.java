@@ -46,11 +46,14 @@ class ComponentCenterer {
             String text = contents.text();
             String[] lines = this.splitNewline(text);
 
-            for (String line : lines) {
-                currentComponent = this.setOrAppend(currentComponent, Component.literal(line).withStyle(componentStyle).append("\n"));
+            for (int i = 0; i < lines.length; i++) {
+                String line = lines[i];
+                currentComponent = this.setOrAppend(currentComponent, Component.literal(line).withStyle(componentStyle));
 
-                consumer.accept(currentComponent);
-                currentComponent = null;
+                if (i != lines.length - 1) {
+                    consumer.accept(currentComponent.append("\n"));
+                    currentComponent = null;
+                }
             }
         } else {
             currentComponent = this.setOrAppend(currentComponent, MutableComponent.create(component.getContents()).withStyle(componentStyle));
@@ -105,6 +108,8 @@ class ComponentCenterer {
 
         if (lastIndex != input.length()) {
             list.add(input.substring(lastIndex));
+        } else {
+            list.add("");
         }
 
         return list.toArray(String[]::new);
