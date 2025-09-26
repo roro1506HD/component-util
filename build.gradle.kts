@@ -1,11 +1,11 @@
 plugins {
     `java-library`
     `maven-publish`
-    id("io.papermc.paperweight.userdev") version "2.0.0-beta.17"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.18"
 }
 
 group = "ovh.roro.libraries"
-version = "1.21.8"
+version = "1.21.9-rc1"
 
 repositories {
     mavenLocal()
@@ -20,12 +20,7 @@ java {
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.21.8-R0.1-SNAPSHOT")
-}
-
-// Configure reobfJar to run when invoking the build task
-tasks.assemble {
-    dependsOn(tasks.reobfJar)
+    paperweight.paperDevBundle("1.21.9-rc1-R0.1-SNAPSHOT")
 }
 
 tasks.compileJava {
@@ -47,10 +42,7 @@ tasks.processResources {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            artifact(tasks.reobfJar)
-            artifact(tasks.jar) {
-                classifier = "moj-mapped"
-            }
+            artifact(tasks.jar)
             artifact(tasks["javadocJar"]) {
                 classifier = "javadoc"
             }
