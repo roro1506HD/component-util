@@ -1,11 +1,11 @@
 plugins {
     `java-library`
     `maven-publish`
-    id("io.papermc.paperweight.userdev") version "2.0.0-beta.18"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.19"
 }
 
 group = "ovh.roro.libraries"
-version = "1.21.9-rc1"
+version = "1.21.10"
 
 repositories {
     mavenLocal()
@@ -20,7 +20,7 @@ java {
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.21.9-rc1-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.21.10-R0.1-SNAPSHOT")
 }
 
 tasks.compileJava {
